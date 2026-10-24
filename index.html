@@ -1,0 +1,587 @@
+<title>메디픽</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="병의원·약국 입점과 현장 촬영, 의사 모델 섭외까지 한 번에 진행하는 메디컬 채널 마케팅">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: the clinic counter. Calm white space like a waiting room, with a two-tone blue block as the one marker. */
+/* White tone: one deliberate light look, no dark variant. */
+:root {
+  color-scheme: light;
+  --bg: #FFFFFF;
+  --surface: #F8F9FB;
+  --ink: #121A33;
+  --muted: #6A7082;
+  --line: #EBEDF2;
+  --accent: #1E5BD6;
+  --accent-ink: #FFFFFF;
+  --navy: #A9C3F2;
+  --river: #E6EEF6;
+  --font-body: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-mark: var(--font-body);
+  --font-head: var(--font-body);
+  --font-mono: var(--font-body);
+  --wrap: 1120px;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.7;
+  -webkit-font-smoothing: antialiased; word-break: keep-all;
+}
+.wrap {
+  max-width: var(--wrap); margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--font-head); font-weight: 700; margin: 0; text-wrap: balance; letter-spacing: -0.035em; }
+p { margin: 0; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+/* Wordmark */
+.mark { font-family: var(--font-mark); font-weight: 800; letter-spacing: -0.05em; line-height: 1; display: inline-flex; align-items: flex-end; gap: 3px; text-decoration: none; color: var(--ink); }
+.mark i { width: 0.24em; height: 0.24em; border-radius: 50%; background: var(--accent); margin-bottom: 0.08em; }
+
+/* Header */
+.top { padding-block: 22px; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.top .mark { font-size: 26px; }
+.nav { display: flex; gap: 28px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.nav a { text-decoration: none; }
+.nav a:hover { color: var(--ink); }
+
+/* Section marker: the brand block from the company deck */
+.eyebrow { display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.block { width: 22px; height: 22px; position: relative; flex: none; background: var(--accent); }
+.block::after { content: ""; position: absolute; left: 8px; top: 6px; width: 14px; height: 16px; background: var(--navy); }
+
+section { padding-block: 88px; }
+.sec-head { display: grid; gap: 16px; margin-bottom: 44px; max-width: 680px; }
+.sec-head h2 { font-size: clamp(26px, 3.4vw, 38px); line-height: 1.3; }
+.sec-head p { color: var(--muted); }
+
+/* Hero */
+.hero { padding-block: 40px 72px; }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+.hero-copy { display: grid; gap: 26px; min-width: 0; }
+.hero h1 { font-size: clamp(32px, 4.6vw, 54px); line-height: 1.25; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero-copy > p { font-size: 18px; color: var(--muted); max-width: 34em; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--ink); }
+.btn.primary { background: var(--ink); color: var(--bg); }
+.btn.ghost { color: var(--ink); }
+.btn.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.hero-photos { position: relative; max-width: 100%; }
+.hero-photos figure { margin: 0; position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 24px 50px -28px rgba(30, 91, 214, 0.28); }
+.hero-photos img { width: 100%; height: 100%; object-fit: cover; }
+.hp-a { width: 100%; aspect-ratio: 4 / 3; max-width: 100%; }
+.hp-tag { position: absolute; left: 16px; bottom: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 12px 16px; font-size: 13px; line-height: 1.5; }
+.hp-tag b { display: block; font-family: var(--font-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.12em; color: var(--accent); }
+
+.facts { margin-top: 64px; display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); }
+.fact { padding: 24px 24px 0 0; display: grid; gap: 4px; }
+.fact + .fact { padding-left: 24px; border-left: 1px solid var(--line); }
+.fact strong { font-family: var(--font-mark); font-weight: 300; letter-spacing: -0.04em; font-size: 46px; line-height: 1; font-variant-numeric: tabular-nums; }
+.fact strong sup { font-size: 0.45em; color: var(--accent); }
+.fact span { font-size: 14px; color: var(--muted); }
+
+/* Services */
+.services { background: var(--surface); border-block: 1px solid var(--line); }
+.svc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 2px solid var(--ink); }
+.svc { padding: 28px 24px 8px 0; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.svc + .svc { padding-left: 24px; border-left: 1px solid var(--line); }
+.svc h3 { font-size: 20px; line-height: 1.4; }
+.svc p { font-size: 15px; color: var(--muted); }
+.svc ul { list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.svc li { font-size: 12px; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); }
+
+/* Cases */
+
+/* Doctor models */
+
+/* Places: where products go */
+.places { margin-top: 56px; display: grid; gap: 20px; }
+.places-title { font-size: 20px; }
+.places-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.place { margin: 0; display: grid; gap: 8px; min-width: 0; }
+.place img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; background: var(--line); }
+.place figcaption span { font-size: 14px; font-weight: 500; }
+.place figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.place figcaption small { font-size: 10px; color: var(--muted); opacity: 0.55; white-space: nowrap; }
+@media (max-width: 960px) { .places-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* Why clinic: conversion and ROAS */
+.why { border-top: 1px solid var(--line); }
+.why-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center; }
+.flow { list-style: none; padding: 0; margin: 0; display: grid; counter-reset: flow; }
+.flow li { counter-increment: flow; display: grid; grid-template-columns: 44px 1fr; gap: 4px 16px; padding-bottom: 26px; position: relative; }
+.flow li:last-child { padding-bottom: 0; }
+.flow li::before { content: counter(flow); grid-row: span 2; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 16px; color: var(--accent); background: var(--bg); border: 1.5px solid var(--accent); position: relative; z-index: 1; }
+.flow li::after { content: ""; position: absolute; left: 21px; top: 44px; bottom: 0; width: 2px; background: var(--river); }
+.flow li:last-child::after { display: none; }
+.flow li:last-child::before { background: var(--accent); color: var(--accent-ink); }
+.flow h3 { font-size: 18px; line-height: 1.4; padding-top: 2px; }
+.flow h3 small { font-size: 12px; font-weight: 500; color: var(--accent); letter-spacing: 0.08em; margin-left: 6px; }
+.flow p { font-size: 15px; color: var(--muted); }
+.funnel-box { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px 20px 16px; min-width: 0; }
+.funnel-box svg { width: 100%; height: auto; display: block; }
+.fn-key { font-family: var(--font-body); font-size: 12px; font-weight: 500; fill: var(--muted); }
+.fn-key.strong { fill: var(--ink); font-weight: 700; }
+.fn-key-a, .fn-bar-a { fill: #C9CED9; }
+.fn-key-b, .fn-bar-b { fill: var(--accent); }
+.fn-axis { stroke: var(--line); stroke-width: 1.5; }
+.fn-stage { font-family: var(--font-body); font-size: 13px; font-weight: 500; fill: var(--muted); }
+.fn-stage.strong { fill: var(--ink); font-weight: 700; }
+.fn-hl { fill: var(--accent); fill-opacity: 0.07; }
+.fn-dash { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.fn-brace { fill: none; stroke: var(--accent); stroke-width: 1.5; }
+.fn-gap { font-family: var(--font-body); font-size: 13px; font-weight: 700; fill: var(--accent); }
+.fn-gain { font-family: var(--font-body); font-size: 15px; font-weight: 700; fill: var(--accent); }
+.fn-note { margin-top: 10px; font-size: 12px; color: var(--muted); }
+@media (max-width: 960px) { .why-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+/* Network map */
+.net { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
+.map-box { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px; min-width: 0; overflow-x: auto; }
+.map-box svg { width: 100%; min-width: 320px; height: auto; display: block; }
+.map-river { fill: none; stroke: var(--river); stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; }
+.map-grid circle { fill: var(--line); }
+.map-dot { fill: var(--accent); }
+.map-ring { fill: none; stroke: var(--accent); stroke-opacity: 0.35; }
+.map-label { font-family: var(--font-body); font-size: 13px; font-weight: 600; fill: var(--ink); }
+.map-sub { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; fill: var(--muted); }
+.map-river-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; fill: var(--muted); }
+.net-list { list-style: none; padding: 0; margin: 0; display: grid; }
+.net-list li { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding-block: 14px; border-bottom: 1px solid var(--line); font-size: 15px; }
+.net-list li:first-child { border-top: 1px solid var(--ink); }
+.net-list span { color: var(--muted); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; align-self: center; }
+
+/* Process */
+.process { background: var(--surface); border-block: 1px solid var(--line); }
+.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(5, 1fr); counter-reset: step; }
+.steps li { counter-increment: step; display: grid; gap: 14px; align-content: start; padding: 0 20px 0 0; position: relative; }
+.steps li::before { content: counter(step, decimal-leading-zero); font-family: var(--font-mark); font-weight: 300; font-size: 40px; line-height: 1; color: var(--accent); }
+.steps li::after { content: ""; position: absolute; top: 20px; left: 64px; right: 16px; height: 1px; background: var(--line); }
+.steps li:last-child::after { display: none; }
+.steps h3 { font-size: 18px; line-height: 1.45; }
+.steps p { font-size: 14px; color: var(--muted); }
+
+/* Clients */
+
+/* Contact */
+.contact { padding-block: 96px; }
+.contact-card { background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: clamp(32px, 6vw, 64px); display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: end; }
+.contact-card h2 { font-size: clamp(26px, 3.6vw, 40px); line-height: 1.3; }
+.contact-card p { color: var(--muted); margin-top: 14px; }
+.contact-lines { display: grid; gap: 10px; font-size: 15px; }
+.contact-lines div { display: grid; grid-template-columns: 72px 1fr; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.contact-lines span:first-child { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--muted); align-self: center; }
+.pending { opacity: 0.55; font-style: italic; }
+.email { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.email-addr { font-weight: 700; font-size: 17px; color: var(--accent); text-decoration: none; user-select: all; }
+.copy { font: inherit; font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+.copy:hover { border-color: var(--accent); color: var(--accent); }
+.inquiry { margin-top: 24px; border: 1px solid var(--line); border-radius: 10px; padding: clamp(24px, 5vw, 48px); display: grid; gap: 20px; background: var(--surface); }
+.form-head { display: grid; gap: 6px; }
+.form-head h3 { font-size: 22px; }
+.form-head p { color: var(--muted); font-size: 14px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field { display: grid; gap: 6px; min-width: 0; border: 0; padding: 0; margin: 0; }
+.field > span, .field legend { font-size: 13px; font-weight: 500; color: var(--ink); padding: 0; }
+.field em { color: var(--accent); font-style: normal; }
+.field input, .field textarea { font: inherit; font-size: 15px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 11px 14px; width: 100%; min-width: 0; }
+.field textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
+.field input[aria-invalid="true"], .field textarea[aria-invalid="true"] { border-color: #C2362B; }
+.consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; cursor: pointer; }
+.consent input { margin-top: 5px; accent-color: var(--accent); flex: none; }
+.consent small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form-foot { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.form-foot .btn { cursor: pointer; font-family: inherit; }
+.form-foot .btn[disabled] { opacity: 0.6; cursor: wait; }
+.form-status { font-size: 14px; color: var(--muted); margin: 0; }
+.form-status.ok { color: #1E7A4C; font-weight: 500; }
+.form-status.err { color: #C2362B; font-weight: 500; }
+@media (max-width: 640px) { .field-row { grid-template-columns: 1fr; } }
+.contact-card p.ref-note { color: var(--ink); font-weight: 500; padding: 12px 16px; background: var(--surface); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; }
+
+footer { padding-block: 32px 48px; border-top: 1px solid var(--line); }
+footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+footer .mark { font-size: 22px; color: var(--ink); }
+
+@media (max-width: 960px) {
+  .hero .wrap, .net, .contact-card { grid-template-columns: 1fr; }
+  .svc-grid { grid-template-columns: 1fr 1fr; }
+  .svc:nth-child(3) { padding-left: 0; border-left: 0; }
+  .svc:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .steps { grid-template-columns: 1fr; gap: 28px; }
+  .steps li { grid-template-columns: 64px 1fr; padding: 0; }
+  .steps li::before { grid-row: span 2; }
+  .steps li::after { display: none; }
+}
+@media (max-width: 640px) {
+  section { padding-block: 64px; }
+  .nav { gap: 16px; font-size: 13px; }
+  .facts { grid-template-columns: 1fr; }
+  .fact, .fact + .fact { padding: 18px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+  .svc-grid { grid-template-columns: 1fr; }
+  .svc, .svc + .svc { padding: 22px 0; border-left: 0; }
+  .svc + .svc { border-top: 1px solid var(--line); }
+  .hp-tag { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn { transition: background-color .2s, color .2s, border-color .2s; }
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="메디픽">메디픽<i></i></a>
+    <nav class="nav" aria-label="주요 메뉴">
+      <a href="#services">서비스</a>
+      <a href="#effect">입점 효과</a>
+      <a href="#network">협업 현황</a>
+      <a href="#process">진행 방식</a>
+      <a href="#contact">문의</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="block" aria-hidden="true"></span>병의원 · 약국 채널 마케팅</div>
+        <h1>고객이 가장 믿는 자리에<br><em>브랜드</em>를 놓습니다</h1>
+        <p>브랜드사 제품을 피부과, 재활병원, 약국에 입점시키고 카운터·대기 공간 DP, 현장 사진·영상 촬영, 의사 모델 섭외까지 한 번에 진행합니다.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#contact">입점 마케팅 제안 문의</a>
+          <a class="btn ghost" href="#contact">레퍼런스 요청</a>
+        </div>
+      </div>
+      <div class="hero-photos">
+        <figure class="hp-a"><img src="img/derm-lobby.jpg" alt="강남구 피부과 로비와 접수 데스크"></figure>
+        <div class="hp-tag"><b>PARTNER CLINIC</b>강남구 피부과</div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="facts">
+        <div class="fact"><strong>20<sup>+</sup></strong><span>협업 병의원</span></div>
+        <div class="fact"><strong>100<sup>+</sup></strong><span>함께한 브랜드</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow"><span class="block" aria-hidden="true"></span>What we do</div>
+        <h2>입점부터 콘텐츠까지,<br>의료 현장을 브랜드의 무대로</h2>
+        <p>병원과 약국은 소비자가 제품을 가장 신뢰하는 공간입니다. 메디픽은 그 공간에 제품을 들이고, 그 장면을 마케팅 자산으로 만듭니다.</p>
+      </div>
+      <div class="svc-grid">
+        <article class="svc">
+          <h3>병의원·약국 입점</h3>
+          <p>제품에 맞는 진료과의 병의원과 약국을 찾아 제품을 소개하고 입점 조건을 조율합니다.</p>
+          <ul><li>피부과</li><li>재활·정형</li><li>약국</li><li>치과·한의원</li></ul>
+        </article>
+        <article class="svc">
+          <h3>현장 DP</h3>
+          <p>환자 동선이 머무는 카운터, 대기 공간, 약국 메인 진열대에 제품과 POP를 배치합니다.</p>
+          <ul><li>카운터 DP</li><li>대기 공간 DP</li><li>메인 매대</li></ul>
+        </article>
+        <article class="svc">
+          <h3>사진·영상 촬영</h3>
+          <p>입점한 현장에서 모델을 섭외해 촬영하고, 브랜드사 촬영팀의 현장 방문도 지원합니다.</p>
+          <ul><li>모델 섭외</li><li>현장 촬영</li><li>촬영팀 방문</li></ul>
+        </article>
+        <article class="svc">
+          <h3>의사 모델 · 매체 홍보</h3>
+          <p>현직 원장을 모델로 섭외해 "의료진이 선택한 제품" 콘텐츠를 만들고 매거진·매체 마케팅으로 확산합니다.</p>
+          <ul><li>의사 모델</li><li>상세페이지</li><li>매거진·매체</li></ul>
+        </article>
+      </div>
+
+      <div class="places">
+        <h3 class="places-title">이런 자리에 제품이 놓입니다</h3>
+        <div class="places-grid">
+          <figure class="place"><img src="img/place-derm-counter.jpg" alt="피부과 접수 카운터" loading="lazy"><figcaption><span>피부과 카운터</span><small>*연출 이미지</small></figcaption></figure>
+          <figure class="place"><img src="img/place-derm-waiting.jpg" alt="피부과 대기 공간의 제품 진열 선반" loading="lazy"><figcaption><span>피부과 대기 공간</span><small>*연출 이미지</small></figcaption></figure>
+          <figure class="place"><img src="img/place-rehab-reception.jpg" alt="재활병원 접수 데스크" loading="lazy"><figcaption><span>재활병원 접수 데스크</span><small>*연출 이미지</small></figcaption></figure>
+          <figure class="place"><img src="img/place-pharmacy-shelf.jpg" alt="약국 메인 매대" loading="lazy"><figcaption><span>약국 메인 매대</span><small>*연출 이미지</small></figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why" id="effect">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow"><span class="block" aria-hidden="true"></span>Why clinic</div>
+        <h2>병원 입점이 구매전환과<br>ROAS로 이어지는 이유</h2>
+        <p>병원과 약국에 놓인 제품은 "전문가가 고른 제품"으로 읽힙니다. 이 신뢰가 광고 소재와 상세페이지로 옮겨가면서 같은 광고비로 더 많은 구매를 만듭니다.</p>
+      </div>
+      <div class="why-grid">
+        <ol class="flow">
+          <li><h3>신뢰 형성<small>TRUST</small></h3><p>병원·약국 진열 자체가 의료 현장이 선택한 제품이라는 신호가 되고, 현장 구매도 함께 일어납니다.</p></li>
+          <li><h3>콘텐츠 확보<small>CONTENT</small></h3><p>현장 DP와 촬영 결과물을 광고 소재, 상세페이지, SNS에 그대로 씁니다.</p></li>
+          <li><h3>구매전환 상승<small>CONVERSION</small></h3><p>"병원에서 쓰는 제품"이라는 근거가 구매 직전의 망설임을 줄여 이탈을 낮춥니다.</p></li>
+          <li><h3>ROAS 개선<small>ROAS</small></h3><p>같은 광고비에서 구매가 늘어나 광고비 대비 매출이 올라갑니다.</p></li>
+        </ol>
+        <figure class="funnel-box" style="margin:0">
+          <svg viewBox="0 0 520 372" role="img" aria-label="개념도: 같은 광고 노출에서 시작해도 병원 입점 콘텐츠는 상세페이지 방문과 구매 단계에서 일반 광고 소재보다 훨씬 많이 남아 구매전환과 ROAS가 높아지는 구조">
+            <rect class="fn-key-a" x="110" y="14" width="12" height="12" rx="3"/>
+            <text class="fn-key" x="128" y="24">일반 광고 소재</text>
+            <rect class="fn-key-b" x="250" y="14" width="12" height="12" rx="3"/>
+            <text class="fn-key strong" x="268" y="24">병원 입점 콘텐츠</text>
+
+            <line class="fn-axis" x1="110" y1="48" x2="110" y2="318"/>
+
+            <text class="fn-stage" x="98" y="83" text-anchor="end">광고 노출</text>
+            <rect class="fn-bar-a" x="110" y="62" width="380" height="18" rx="4"/>
+            <rect class="fn-bar-b" x="110" y="84" width="380" height="18" rx="4"/>
+
+            <text class="fn-stage" x="98" y="155" text-anchor="end">상세페이지</text>
+            <rect class="fn-bar-a" x="110" y="134" width="190" height="18" rx="4"/>
+            <rect class="fn-bar-b" x="110" y="156" width="300" height="18" rx="4"/>
+
+            <rect class="fn-hl" x="0" y="196" width="520" height="122" rx="10"/>
+            <text class="fn-stage strong" x="98" y="233" text-anchor="end">구매</text>
+            <rect class="fn-bar-a" x="110" y="212" width="70" height="18" rx="4"/>
+            <rect class="fn-bar-b" x="110" y="234" width="260" height="18" rx="4"/>
+            <line class="fn-dash" x1="180" y1="212" x2="180" y2="276"/>
+            <path class="fn-brace" d="M180 270 V276 H370 V270"/>
+            <text class="fn-gap" x="275" y="298" text-anchor="middle">구매전환 차이</text>
+
+            <text class="fn-gain" x="260" y="352" text-anchor="middle">같은 광고비, 더 많은 구매 → ROAS ↑</text>
+          </svg>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="network">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow"><span class="block" aria-hidden="true"></span>Network</div>
+        <h2>주요 협업 병의원</h2>
+        <p>제품 카테고리에 맞춰 진료과와 지역을 골라 입점을 제안합니다.</p>
+      </div>
+      <div class="net">
+        <div class="map-box">
+          <svg viewBox="0 0 640 400" role="img" aria-label="협업 의료기관 위치: 노원 재활, 강북 치과, 관악 한의원, 강남 재활·정형, 강남 피부과, 송파 약국, 성남 약국">
+            <g class="map-grid">
+              <!-- dot grid drawn by script below; static fallback rows -->
+            </g>
+            <path class="map-river" d="M20 170 C 90 175, 130 215, 200 228 S 300 250, 350 232 S 450 190, 520 170 S 600 150, 630 145"/>
+            <text class="map-river-label" x="236" y="262">HAN RIVER</text>
+
+            <g>
+              <circle class="map-ring" cx="448" cy="52" r="14"/><circle class="map-dot" cx="448" cy="52" r="6"/>
+              <text class="map-label" x="466" y="50">재활</text><text class="map-sub" x="466" y="64">NOWON</text>
+            </g>
+            <g>
+              <circle class="map-ring" cx="344" cy="84" r="14"/><circle class="map-dot" cx="344" cy="84" r="6"/>
+              <text class="map-label" x="296" y="82" text-anchor="end">치과</text><text class="map-sub" x="296" y="96" text-anchor="end">GANGBUK</text>
+            </g>
+            <g>
+              <circle class="map-ring" cx="262" cy="330" r="14"/><circle class="map-dot" cx="262" cy="330" r="6"/>
+              <text class="map-label" x="244" y="328" text-anchor="end">한의원</text><text class="map-sub" x="244" y="342" text-anchor="end">GWANAK</text>
+            </g>
+            <g>
+              <circle class="map-ring" cx="420" cy="306" r="14"/><circle class="map-dot" cx="420" cy="306" r="6"/>
+              <text class="map-label" x="402" y="304" text-anchor="end">재활·정형</text><text class="map-sub" x="402" y="318" text-anchor="end">GANGNAM</text>
+            </g>
+            <g>
+              <circle class="map-ring" cx="448" cy="318" r="14"/><circle class="map-dot" cx="448" cy="318" r="6"/>
+              <text class="map-label" x="448" y="352" text-anchor="middle">피부과</text><text class="map-sub" x="448" y="366" text-anchor="middle">GANGNAM</text>
+            </g>
+            <g>
+              <circle class="map-ring" cx="540" cy="292" r="14"/><circle class="map-dot" cx="540" cy="292" r="6"/>
+              <text class="map-label" x="558" y="290">약국</text><text class="map-sub" x="558" y="304">SONGPA</text>
+            </g>
+            <g>
+              <circle class="map-ring" cx="540" cy="350" r="14"/><circle class="map-dot" cx="540" cy="350" r="6"/>
+              <text class="map-label" x="558" y="348">약국</text><text class="map-sub" x="558" y="362">SEONGNAM</text>
+            </g>
+          </svg>
+        </div>
+        <ul class="net-list">
+          <li>피부과 · 재활·정형외과<span>강남구</span></li>
+          <li>약국<span>송파구 · 성남시</span></li>
+          <li>재활병원<span>노원구</span></li>
+          <li>치과<span>강북구</span></li>
+          <li>한의원<span>관악구</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="process" id="process">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow"><span class="block" aria-hidden="true"></span>Process</div>
+        <h2>진행 방식</h2>
+        <p>제품 소개부터 홍보 활용까지 다섯 단계로 진행합니다.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>제품 소개 및 컨펌</h3><p>브랜드사 제품을 적합한 병의원에 소개하고 입점 여부를 확인합니다.</p></li>
+        <li><h3>계약 조건 조율</h3><p>진열 위치, 기간, 촬영 범위 등 병의원과 브랜드사의 조건을 맞춥니다.</p></li>
+        <li><h3>계약서 작성</h3><p>합의한 조건으로 계약을 체결합니다.</p></li>
+        <li><h3>사진·영상 촬영</h3><p>입점 현장에서 DP 컷과 모델 촬영을 진행합니다.</p></li>
+        <li><h3>제품 홍보 활용</h3><p>촬영 결과물을 상세페이지, 광고, 매체 홍보에 활용합니다.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="contact-card">
+        <div>
+          <h2>우리 제품, 어느 병원에<br>어울릴지 함께 찾아드립니다</h2>
+          <p>제품 정보를 보내주시면 맞는 진료과와 입점 가능한 병의원을 제안해 드립니다.</p>
+          <p class="ref-note">입점·촬영 레퍼런스는 joon@agon.kr로 요청해 주세요. 확인 후 자료를 보내드립니다.</p>
+        </div>
+        <div class="contact-lines">
+          <div><span>EMAIL</span><span class="email"><a class="email-addr" href="mailto:joon@agon.kr">joon@agon.kr</a><button type="button" class="copy" id="copy-email">복사</button></span></div>
+        </div>
+      </div>
+
+      <form class="inquiry" id="inquiry" novalidate>
+        <div class="form-head">
+          <h3>문의 남기기</h3>
+          <p>남겨주신 내용은 담당자 이메일로 바로 전달됩니다. 영업일 기준 1~2일 안에 회신드립니다.</p>
+        </div>
+        <div class="field-row">
+          <label class="field" for="f-name"><span>담당자 이름 <em>*</em></span><input id="f-name" name="name" type="text" autocomplete="name" required maxlength="50"></label>
+          <label class="field" for="f-company"><span>회사·브랜드명 <em>*</em></span><input id="f-company" name="company" type="text" autocomplete="organization" required maxlength="80"></label>
+        </div>
+        <div class="field-row">
+          <label class="field" for="f-email"><span>이메일 <em>*</em></span><input id="f-email" name="email" type="email" autocomplete="email" required maxlength="100"></label>
+          <label class="field" for="f-phone"><span>연락처</span><input id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" placeholder="선택"></label>
+        </div>
+        <label class="field" for="f-message"><span>문의 내용 <em>*</em></span><textarea id="f-message" name="message" rows="5" required maxlength="3000" placeholder="제품명과 카테고리, 원하는 진료과나 지역, 일정 등을 적어주세요."></textarea></label>
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="consent" for="f-consent"><input id="f-consent" name="consent" type="checkbox" required> <span>개인정보 수집·이용에 동의합니다. <small>수집 항목: 이름, 회사명, 이메일, 연락처 · 목적: 문의 답변 · 보유 기간: 문의 처리 후 1년</small></span></label>
+        <div class="form-foot">
+          <button type="submit" class="btn primary" id="f-submit">문의 보내기</button>
+          <p class="form-status" id="f-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mark">메디픽<i></i></span>
+    <span>© 2025 메디픽 · 운영 AGON Corp.</span>
+  </div>
+</footer>
+
+<script>
+  // Faint dot grid behind the map
+  (function () {
+    var g = document.querySelector('.map-grid');
+    if (!g) return;
+    var ns = 'http://www.w3.org/2000/svg';
+    for (var y = 20; y < 400; y += 28) {
+      for (var x = 20; x < 640; x += 28) {
+        var c = document.createElementNS(ns, 'circle');
+        c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', 1.4);
+        g.appendChild(c);
+      }
+    }
+  })();
+  // Copy the contact email
+  (function () {
+    var btn = document.getElementById('copy-email');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var addr = 'joon@agon.kr';
+      var done = function () { btn.textContent = '복사됨'; setTimeout(function () { btn.textContent = '복사'; }, 1600); };
+      var fallback = function () {
+        var r = document.createRange(); r.selectNodeContents(document.querySelector('.email-addr'));
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        btn.textContent = '선택됨 · ⌘C로 복사';
+      };
+      try { navigator.clipboard.writeText(addr).then(done, fallback); } catch (e) { fallback(); }
+    });
+  })();
+
+  // Inquiry form → Web3Forms → joon@agon.kr
+  // Paste the Web3Forms access key here (see DEPLOY.md, step 1).
+  var FORM_KEY = '';
+  (function () {
+    var form = document.getElementById('inquiry');
+    if (!form) return;
+    var status = document.getElementById('f-status');
+    var submit = document.getElementById('f-submit');
+    var FALLBACK = '전송하지 못했어요. 잠시 후 다시 시도하거나 joon@agon.kr로 직접 보내주세요.';
+
+    function setStatus(text, kind) {
+      status.textContent = text;
+      status.className = 'form-status' + (kind ? ' ' + kind : '');
+    }
+
+    form.addEventListener('input', function (e) {
+      if (e.target.getAttribute('aria-invalid') === 'true' && e.target.checkValidity()) e.target.removeAttribute('aria-invalid');
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var invalid = Array.prototype.filter.call(form.querySelectorAll('input[required], textarea[required]'), function (el) {
+        var bad = el.type === 'checkbox' ? !el.checked : !el.checkValidity() || !el.value.trim();
+        if (bad) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid');
+        return bad;
+      });
+      if (invalid.length) {
+        var first = invalid[0];
+        setStatus(first.id === 'f-consent' ? '개인정보 수집·이용에 동의해 주세요.'
+          : first.id === 'f-email' && first.value ? '이메일 주소 형식을 확인해 주세요.'
+          : '필수 항목(*)을 모두 입력해 주세요.', 'err');
+        first.focus();
+        return;
+      }
+      if (form.botcheck.checked) return;
+      if (!FORM_KEY) { setStatus('문의 폼이 아직 연결되지 않았어요. joon@agon.kr로 직접 보내주세요.', 'err'); return; }
+
+      var d = new FormData(form);
+      var payload = {
+        access_key: FORM_KEY,
+        subject: '[메디픽 문의] ' + d.get('company'),
+        from_name: '메디픽 웹사이트',
+        name: d.get('name'),
+        email: d.get('email'),
+        '회사·브랜드명': d.get('company'),
+        '연락처': d.get('phone') || '-',
+        '문의 내용': d.get('message'),
+        botcheck: ''
+      };
+      submit.disabled = true;
+      setStatus('보내는 중…');
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function (r) { return r.json(); }).then(function (res) {
+        if (res && res.success) {
+          form.reset();
+          setStatus('문의가 접수됐어요. 입력하신 이메일로 회신드릴게요.', 'ok');
+        } else {
+          setStatus(FALLBACK, 'err');
+        }
+      }).catch(function () {
+        setStatus(FALLBACK, 'err');
+      }).then(function () { submit.disabled = false; });
+    });
+  })();
+</script>
