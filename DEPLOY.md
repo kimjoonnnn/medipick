@@ -5,10 +5,9 @@
 | 단계 | 할 일 | 걸리는 시간 |
 |---|---|---|
 | 1 | 문의 폼 연결 키 받기 (Web3Forms) | 2분 |
-| 2 | 배포용 폴더 만들기 | 1분 |
-| 3 | 사이트 올리기 (Netlify, 무료 주소) | 5분 |
-| 4 | 문의 폼 테스트 | 2분 |
-| 5 | (나중에) 도메인 사서 연결하기 | 20분 + 반영 대기 |
+| 2 | 사이트 올리기 (Netlify, 무료 주소) | 5분 |
+| 3 | 문의 폼 테스트 | 2분 |
+| 4 | (나중에) 도메인 사서 연결하기 | 20분 + 반영 대기 |
 
 ---
 
@@ -29,29 +28,21 @@
 
 > 키를 Claude에게 알려주면 대신 넣어줄 수 있습니다. 이 키는 웹페이지에 공개되어도 되는 값입니다. 메일을 받을 주소만 정해져 있고, 계정 비밀번호가 아닙니다.
 
-## 2. 배포용 폴더 만들기
+## 2. 사이트 올리기 (Netlify, 무료 주소)
 
-`agon-site` 폴더에서 아래 명령을 실행합니다.
-
-```bash
-python3 build.py
-```
-
-`dist` 폴더가 만들어집니다. 이 폴더가 실제로 올라갈 사이트입니다. `index.html`이나 사진을 고친 뒤에는 이 명령을 다시 실행하세요.
-
-## 3. 사이트 올리기 (Netlify, 무료 주소)
+올릴 사이트는 `index.html` 파일과 `img` 폴더 두 가지입니다. 새 폴더를 하나 만들어 이 둘만 넣어 두세요.
 
 1. https://app.netlify.com 에서 가입합니다. 이메일이나 GitHub 계정으로 가입할 수 있습니다.
-2. https://app.netlify.com/drop 에 접속해 `dist` 폴더를 통째로 끌어다 놓습니다.
+2. https://app.netlify.com/drop 에 접속해 그 폴더를 통째로 끌어다 놓습니다.
 3. 몇 초 뒤 `무작위이름.netlify.app` 주소가 생깁니다. 열어서 사이트가 잘 나오는지 확인합니다.
 4. **Site configuration → Change site name**에서 이름을 `medipick`처럼 바꿉니다. 사이트 주소가 `https://medipick.netlify.app`이 됩니다. 이미 누가 쓰는 이름이면 `medipick-kr`처럼 바꿔보세요.
-5. 정해진 주소를 `build.py`의 `DOMAIN = ""` 따옴표 안에 넣고 2단계를 다시 실행한 뒤, 새 `dist` 폴더를 다시 올립니다. 이렇게 하면 카카오톡 등에 링크를 보낼 때 병원 사진 미리보기가 뜹니다.
+5. `index.html` 윗부분의 `og:url`과 `og:image` 두 줄에서 `https://kimjoonnnn.github.io/medipick` 부분을 정해진 주소로 바꾸고 폴더를 다시 올립니다. 이렇게 하면 카카오톡 등에 링크를 보낼 때 병원 사진 미리보기가 뜹니다.
 
-   예: `DOMAIN = "https://medipick.netlify.app"`
+   예: `<meta property="og:image" content="https://medipick.netlify.app/img/derm-lobby.jpg">`
 
-수정한 내용을 다시 올릴 때는 Netlify 사이트 화면의 **Deploys** 탭에 새 `dist` 폴더를 끌어다 놓으면 됩니다. HTTPS(자물쇠)는 자동으로 켜집니다.
+수정한 내용을 다시 올릴 때는 Netlify 사이트 화면의 **Deploys** 탭에 폴더를 다시 끌어다 놓으면 됩니다. HTTPS(자물쇠)는 자동으로 켜집니다.
 
-## 4. 문의 폼 테스트
+## 3. 문의 폼 테스트
 
 1. 올린 사이트 맨 아래 **문의 남기기** 폼에 테스트 내용을 적어 보냅니다.
 2. "문의가 접수됐어요" 문구가 나오는지 확인합니다.
@@ -60,7 +51,7 @@ python3 build.py
 
 ---
 
-## 5. (나중에) 도메인 연결하기
+## 4. (나중에) 도메인 연결하기
 
 ### 도메인 고르기
 
@@ -79,7 +70,7 @@ python3 build.py
    | 하위 주소 (예: medipick.agon.kr) | CNAME | `medipick` | `사이트이름.netlify.app` |
 
 3. 반영까지 몇 분에서 몇 시간 걸립니다. 연결되면 HTTPS가 자동으로 켜집니다.
-4. `build.py`의 `DOMAIN`을 새 주소로 바꾸고 다시 빌드해서 올립니다.
+4. `index.html`의 `og:url`과 `og:image`를 새 주소로 바꾸고 다시 올립니다.
 
 ### ⚠️ agon.kr을 건드릴 때 꼭 지킬 것
 
