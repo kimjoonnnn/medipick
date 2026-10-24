@@ -81,6 +81,11 @@ section { padding-block: 88px; }
 
 /* Hero */
 .hero { padding-block: 40px 72px; }
+/* Desktop: the hero fills the first screen under the 70px header. Narrower screens stack and run taller anyway. */
+@media (min-width: 961px) {
+  .hero { min-height: calc(100svh - 70px); padding-block: 32px; display: flex; flex-direction: column; justify-content: center; }
+  .hero > .wrap { width: 100%; }
+}
 .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
 .hero-copy { display: grid; gap: 26px; min-width: 0; }
 .hero h1 { font-size: clamp(32px, 4.6vw, 54px); line-height: 1.25; }
@@ -578,12 +583,12 @@ footer .mark { font-size: 22px; color: var(--ink); }
           <p>남겨주신 내용은 담당자 이메일로 바로 전달됩니다. 영업일 기준 1~2일 안에 회신드립니다.</p>
         </div>
         <div class="field-row">
-          <label class="field" for="f-name"><span>담당자 이름 <em>*</em></span><input id="f-name" name="name" type="text" autocomplete="name" required maxlength="50"></label>
-          <label class="field" for="f-company"><span>회사·브랜드명 <em>*</em></span><input id="f-company" name="company" type="text" autocomplete="organization" required maxlength="80"></label>
+          <label class="field" for="f-name"><span>담당자 이름 <em>*</em></span><input id="f-name" name="name" type="text" autocomplete="name" required maxlength="50" placeholder="예: 홍길동"></label>
+          <label class="field" for="f-company"><span>회사·브랜드명 <em>*</em></span><input id="f-company" name="company" type="text" autocomplete="organization" required maxlength="80" placeholder="예: 메디픽코스메틱"></label>
         </div>
         <div class="field-row">
-          <label class="field" for="f-email"><span>이메일 <em>*</em></span><input id="f-email" name="email" type="email" autocomplete="email" required maxlength="100"></label>
-          <label class="field" for="f-phone"><span>연락처</span><input id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" placeholder="선택"></label>
+          <label class="field" for="f-email"><span>이메일 <em>*</em></span><input id="f-email" name="email" type="email" autocomplete="email" required maxlength="100" placeholder="예: name@company.com"></label>
+          <label class="field" for="f-phone"><span>연락처</span><input id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" placeholder="선택 · 예: 010-1234-5678"></label>
         </div>
         <label class="field" for="f-message"><span>문의 내용 <em>*</em></span><textarea id="f-message" name="message" rows="5" required maxlength="3000" placeholder="제품명과 카테고리, 원하는 진료과나 지역, 일정 등을 적어주세요."></textarea></label>
         <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
