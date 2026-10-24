@@ -65,7 +65,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .top .mark { font-size: 26px; }
 .nav { display: flex; gap: 28px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
-.nav a { text-decoration: none; }
+/* Padding grows the tap area to 44px; the negative margin keeps the layout unchanged. */
+.nav a { text-decoration: none; padding: 11px 8px; margin: -11px -8px; }
 .nav a:hover { color: var(--ink); }
 
 /* Section marker: the brand block from the company deck */
@@ -236,7 +237,8 @@ section { padding-block: 88px; }
 .pending { opacity: 0.55; font-style: italic; }
 .email { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .email-addr { font-weight: 700; font-size: 17px; color: var(--accent); text-decoration: none; user-select: all; }
-.copy { font: inherit; font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+.copy { position: relative; font: inherit; font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+.copy::after { content: ""; position: absolute; inset: -8px 0; } /* 44px tap area, not widened toward the email link */
 .copy:hover { border-color: var(--accent); color: var(--accent); }
 .inquiry { margin-top: 24px; border: 1px solid var(--line); border-radius: 10px; padding: clamp(24px, 5vw, 48px); display: grid; gap: 20px; background: var(--surface); }
 .form-head { display: grid; gap: 6px; }
@@ -246,7 +248,7 @@ section { padding-block: 88px; }
 .field { display: grid; gap: 6px; min-width: 0; border: 0; padding: 0; margin: 0; }
 .field > span, .field legend { font-size: 13px; font-weight: 500; color: var(--ink); padding: 0; }
 .field em { color: var(--accent); font-style: normal; }
-.field input, .field textarea { font: inherit; font-size: 15px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 11px 14px; width: 100%; min-width: 0; }
+.field input, .field textarea { font: inherit; font-size: 16px; /* below 16px iOS Safari zooms in on focus */ color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 11px 14px; width: 100%; min-width: 0; }
 .field textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
 .field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
 .field input[aria-invalid="true"], .field textarea[aria-invalid="true"] { border-color: #C2362B; }
@@ -628,7 +630,7 @@ footer .mark { font-size: 22px; color: var(--ink); }
       var fallback = function () {
         var r = document.createRange(); r.selectNodeContents(document.querySelector('.email-addr'));
         var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
-        btn.textContent = '선택됨 · ⌘C로 복사';
+        btn.textContent = '선택됨 · Ctrl+C(⌘C)로 복사';
       };
       try { navigator.clipboard.writeText(addr).then(done, fallback); } catch (e) { fallback(); }
     });
