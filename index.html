@@ -106,16 +106,52 @@ section { padding-block: 88px; }
 
 /* Doctor models */
 
-/* Places: where products go */
-.places { margin-top: 56px; display: grid; gap: 20px; }
-.places-title { font-size: 20px; }
-.places-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-.place { margin: 0; display: grid; gap: 8px; min-width: 0; }
-.place img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; background: var(--line); }
-.place figcaption span { font-size: 14px; font-weight: 500; }
-.place figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
-.place figcaption small { font-size: 10px; color: var(--muted); opacity: 0.55; white-space: nowrap; }
-@media (max-width: 960px) { .places-grid { grid-template-columns: repeat(2, 1fr); } }
+/* Pain points */
+.pain { padding-bottom: 56px; }
+.pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pain-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px; display: grid; gap: 10px; align-content: start; }
+.pain-q { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 14px; color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--bg)); }
+.pain-card h3 { font-size: 18px; line-height: 1.45; }
+.pain-card p { font-size: 14px; color: var(--muted); }
+.pain-answer { margin-top: 32px; font-size: clamp(18px, 2.4vw, 24px); font-weight: 500; letter-spacing: -0.02em; }
+.pain-answer strong { color: var(--accent); font-weight: 700; }
+
+/* Photo bands between sections */
+.band { padding-block: 8px; }
+.band-fig, .deliver-fig { margin: 0; display: grid; gap: 6px; }
+.band-fig img { width: 100%; aspect-ratio: 16 / 7; object-fit: cover; border-radius: 10px; background: var(--line); }
+.band-fig figcaption, .deliver-fig figcaption { justify-self: end; font-size: 10px; color: var(--muted); opacity: 0.55; }
+
+/* Fit and deliverables */
+.fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.fit-col { display: grid; gap: 20px; min-width: 0; }
+.fit-col h2 { font-size: clamp(24px, 3vw, 32px); line-height: 1.3; }
+.chips { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.chips li { font-size: 14px; font-weight: 500; padding: 7px 14px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 8%, var(--bg)); color: var(--accent); }
+.checks { list-style: none; padding: 0; margin: 4px 0 0; display: grid; gap: 12px; }
+.checks li { display: grid; grid-template-columns: 20px 1fr; gap: 10px; font-size: 15px; }
+.checks li::before { content: ""; width: 18px; height: 18px; margin-top: 4px; border-radius: 50%; background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.5l2.6 2.5L13 6.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 18px no-repeat; }
+.deliver-fig img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; background: var(--line); }
+.deliver-list { list-style: none; padding: 0; margin: 0; display: grid; border-top: 1px solid var(--ink); }
+.deliver-list li { display: grid; gap: 2px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.deliver-list strong { font-size: 16px; }
+.deliver-list span { font-size: 14px; color: var(--muted); }
+.deliver-note { font-size: 13px; color: var(--muted); }
+
+/* Floating inquiry button */
+.fab { position: fixed; z-index: 20; right: calc(20px + env(safe-area-inset-right, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); display: inline-flex; align-items: center; gap: 8px; padding: 14px 22px; border-radius: 999px; background: var(--accent); color: #FFFFFF; font-weight: 700; font-size: 15px; text-decoration: none; box-shadow: 0 10px 28px -8px rgba(30, 91, 214, 0.55); transition: opacity .2s, transform .2s; }
+.fab::before { content: ""; width: 18px; height: 18px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'/%3E%3C/svg%3E") center / contain no-repeat; }
+.fab:hover { transform: translateY(-2px); }
+.fab.is-hidden { opacity: 0; pointer-events: none; transform: translateY(8px); }
+
+@media (max-width: 960px) {
+  .pain-grid { grid-template-columns: 1fr; }
+  .fit-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 640px) {
+  .band-fig img { aspect-ratio: 4 / 3; }
+  .fab { padding: 12px 18px; font-size: 14px; }
+}
 
 /* Why clinic: conversion and ROAS */
 .why { border-top: 1px solid var(--line); }
@@ -280,6 +316,39 @@ footer .mark { font-size: 22px; color: var(--ink); }
     </div>
   </section>
 
+  <section class="pain" id="problem">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow"><span class="block" aria-hidden="true"></span>Problem</div>
+        <h2>이런 고민, 있으신가요?</h2>
+      </div>
+      <div class="pain-grid">
+        <article class="pain-card">
+          <span class="pain-q" aria-hidden="true">Q</span>
+          <h3>제품은 자신 있는데<br>구매로 이어지지 않아요</h3>
+          <p>상세페이지 유입은 꾸준한데, 처음 보는 브랜드라 마지막에 망설이는 고객이 많습니다.</p>
+        </article>
+        <article class="pain-card">
+          <span class="pain-q" aria-hidden="true">Q</span>
+          <h3>광고비를 늘려도<br>ROAS가 제자리예요</h3>
+          <p>브랜드 인지도가 낮으면 같은 광고비를 써도 구매 전환이 잘 일어나지 않습니다.</p>
+        </article>
+        <article class="pain-card">
+          <span class="pain-q" aria-hidden="true">Q</span>
+          <h3>소비자가 바로 믿을 만한<br>근거가 필요해요</h3>
+          <p>후기와 할인만으로는 부족할 때, 한눈에 신뢰가 가는 장면이 필요합니다.</p>
+        </article>
+      </div>
+      <p class="pain-answer">메디픽은 <strong>병원과 약국이라는 장소</strong>로 그 신뢰를 만듭니다.</p>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="wrap">
+      <figure class="band-fig"><img src="img/band-derm-counter.jpg" alt="병원 접수 카운터 연출 이미지" loading="lazy"><figcaption>*연출 이미지</figcaption></figure>
+    </div>
+  </div>
+
   <section class="services" id="services">
     <div class="wrap">
       <div class="sec-head">
@@ -309,15 +378,34 @@ footer .mark { font-size: 22px; color: var(--ink); }
           <ul><li>의사 모델</li><li>상세페이지</li><li>매거진·매체</li></ul>
         </article>
       </div>
+    </div>
+  </section>
 
-      <div class="places">
-        <h3 class="places-title">이런 자리에 제품이 놓입니다</h3>
-        <div class="places-grid">
-          <figure class="place"><img src="img/place-derm-counter.jpg" alt="피부과 접수 카운터" loading="lazy"><figcaption><span>피부과 카운터</span><small>*연출 이미지</small></figcaption></figure>
-          <figure class="place"><img src="img/place-derm-waiting.jpg" alt="피부과 대기 공간의 제품 진열 선반" loading="lazy"><figcaption><span>피부과 대기 공간</span><small>*연출 이미지</small></figcaption></figure>
-          <figure class="place"><img src="img/place-rehab-reception.jpg" alt="재활병원 접수 데스크" loading="lazy"><figcaption><span>재활병원 접수 데스크</span><small>*연출 이미지</small></figcaption></figure>
-          <figure class="place"><img src="img/place-pharmacy-shelf.jpg" alt="약국 메인 매대" loading="lazy"><figcaption><span>약국 메인 매대</span><small>*연출 이미지</small></figcaption></figure>
-        </div>
+  <section class="fit" id="fit">
+    <div class="wrap fit-grid">
+      <div class="fit-col">
+        <div class="eyebrow"><span class="block" aria-hidden="true"></span>For brands</div>
+        <h2>이런 브랜드에 맞습니다</h2>
+        <ul class="chips" aria-label="잘 맞는 제품군">
+          <li>스킨케어·화장품</li><li>뷰티 디바이스</li><li>헤어·두피 케어</li><li>건강기능식품</li><li>마사지기·헬스케어 기기</li><li>구강·위생용품</li>
+        </ul>
+        <ul class="checks">
+          <li>출시 초기라 브랜드 신뢰도를 먼저 쌓아야 하는 브랜드</li>
+          <li>광고 효율(ROAS)을 끌어올릴 새로운 소재가 필요한 브랜드</li>
+          <li>"병원에서 쓰는 제품"이라는 메시지가 어울리는 제품</li>
+          <li>병원·약국 채널로 판로를 넓히고 싶은 브랜드</li>
+        </ul>
+      </div>
+      <div class="fit-col deliver">
+        <figure class="deliver-fig"><img src="img/place-derm-waiting.jpg" alt="피부과 대기 공간 제품 진열 연출 이미지" loading="lazy"><figcaption>*연출 이미지</figcaption></figure>
+        <h2>받으시는 것</h2>
+        <ol class="deliver-list">
+          <li><strong>병원·약국 진열 사진</strong><span>제품이 실제 의료 현장에 놓인 장면을 전문 촬영으로 담습니다.</span></li>
+          <li><strong>현장 영상</strong><span>숏폼과 광고에 바로 쓸 수 있는 현장 영상을 제작합니다.</span></li>
+          <li><strong>상세페이지·광고 소재 활용</strong><span>결과물을 상세페이지, 퍼포먼스 광고, SNS 콘텐츠에 활용할 수 있습니다.</span></li>
+          <li><strong>의사 모델 콘텐츠 (선택)</strong><span>현직 원장이 함께하는 신뢰도 높은 콘텐츠를 추가할 수 있습니다.</span></li>
+        </ol>
+        <p class="deliver-note">세부 구성과 활용 조건은 상담 시 안내드립니다.</p>
       </div>
     </div>
   </section>
@@ -367,6 +455,12 @@ footer .mark { font-size: 22px; color: var(--ink); }
       </div>
     </div>
   </section>
+
+  <div class="band">
+    <div class="wrap">
+      <figure class="band-fig"><img src="img/band-pharmacy-shelf.jpg" alt="약국 메인 매대 연출 이미지" loading="lazy"><figcaption>*연출 이미지</figcaption></figure>
+    </div>
+  </div>
 
   <section id="network">
     <div class="wrap">
@@ -425,6 +519,12 @@ footer .mark { font-size: 22px; color: var(--ink); }
     </div>
   </section>
 
+  <div class="band">
+    <div class="wrap">
+      <figure class="band-fig"><img src="img/band-rehab-reception.jpg" alt="재활병원 접수 데스크 연출 이미지" loading="lazy"><figcaption>*연출 이미지</figcaption></figure>
+    </div>
+  </div>
+
   <section class="process" id="process">
     <div class="wrap">
       <div class="sec-head">
@@ -480,6 +580,8 @@ footer .mark { font-size: 22px; color: var(--ink); }
   </section>
 </main>
 
+<a class="fab" id="fab" href="#contact">문의하기</a>
+
 <footer>
   <div class="wrap">
     <span class="mark">메디픽<i></i></span>
@@ -515,6 +617,16 @@ footer .mark { font-size: 22px; color: var(--ink); }
       };
       try { navigator.clipboard.writeText(addr).then(done, fallback); } catch (e) { fallback(); }
     });
+  })();
+
+  // Hide the floating button while the inquiry section is on screen
+  (function () {
+    var fab = document.getElementById('fab');
+    var contact = document.getElementById('contact');
+    if (!fab || !contact || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function (entries) {
+      fab.classList.toggle('is-hidden', entries[0].isIntersecting);
+    }, { threshold: 0.15 }).observe(contact);
   })();
 
   // Inquiry form → Web3Forms → joon@agon.kr
