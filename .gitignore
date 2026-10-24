@@ -2,3 +2,7 @@ dist/
 samples/
 .DS_Store
 __pycache__/
+
+# Local tooling
+CLAUDE.md
+.dual-graph/
